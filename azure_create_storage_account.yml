@@ -1,0 +1,22 @@
+- hosts: localhost
+  become: no
+
+  tasks:
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: Testing
+      location: southcentralus
+      tags:
+        testing: testing
+        delete: never
+    ignore_errors: yes
+
+  - name: Create storage account
+    azure_rm_storageaccount:
+      resource_group: Testing
+      name: oratestaccount001
+      account_type: Standard_LRS
+    register: out_put
+
+  - name: debug
+    debug: var=out_put
