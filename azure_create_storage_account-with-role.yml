@@ -1,0 +1,5 @@
+- hosts: localhost
+  become: no
+
+  roles:
+    - ansible-tower-role-ahs-azure-create-storage-acct
